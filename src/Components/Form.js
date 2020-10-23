@@ -8,18 +8,25 @@ class Form extends Component {
             year: '',
             posterImg: ''
         }
-        
+        this.handleChange=this.handleChange.bind(this)
+        this.handleAdd = this.handleAdd.bind(this)
     }
 
-    handleChange = (e) =>{
+    handleChange(e){
         this.setState({
             [e.target.name]: e.target.value
         })
     }
 
+    handleAdd(e){
+        const {title, year, posterImg} = this.state
+        e.preventDefault();
+        this.props.addMovie(title, year, posterImg)
+    }
+
     render() {
         return (
-            <form className="Form">
+            <form className="Form" onSubmit={this.handleAdd}>
                 <input 
                     name="title" 
                     placeholder="Title"
@@ -37,7 +44,7 @@ class Form extends Component {
                     placeholder="Poster URL"
                     onChange={e => this.handleChange(e)}
                 />
-                <button type="submit">Add Movies</button>
+                <button type="submit" >Add Movies</button>
             </form>
         )
     }

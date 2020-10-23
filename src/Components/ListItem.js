@@ -1,12 +1,13 @@
 import React from 'react'
 
 function ListItem (props) {
+    const {deleteMovie, movie} = props
     return (
-        <div className="List-Item">
-            <img alt={props.movie.title} className="movie-poster" src={props.movie.posterImg}/>
+        <div className="List-Item" onDoubleClick={() => deleteMovie(movie.id)}>
+            <img alt={movie.title} className="movie-poster" src={movie.posterImg}/>
             <div className="movie-info">
-                <p>{props.movie.title}</p>
-                <p>{props.movie.year}</p>
+                <p>{movie.title}</p>
+                <p>{movie.year}</p>
             </div>
         </div>
     )
